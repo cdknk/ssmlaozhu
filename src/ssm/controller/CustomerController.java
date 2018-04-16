@@ -1,36 +1,39 @@
 package ssm.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import ssm.dao.CustomerDaoImpl;
 import ssm.entity.Customer;
 import ssm.service.CustomerService;
-import ssm.service.CustomerServiceImpl;
 
 // GET /customers
-public class CustomerController extends HttpServlet {
+@Controller
+public class CustomerController {
 	
-	private CustomerService customerService = 
-			new CustomerServiceImpl(new CustomerDaoImpl());
+	private CustomerService customerService;
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
+	@Autowired
+	public CustomerController(CustomerService customerService) {
+		this.customerService = customerService;
+	}
+
+	// 指定此控制器方法用来处理GET /customers
+	@RequestMapping(method = RequestMethod.GET, value = "/customers")
+	public String findAll(Model model) {
 		System.out.println("处理: GET /customers");
 		
 		// 调service
 		List<Customer> customers = customerService.findAll();
 		
 		// 数据放model
-		req.setAttribute("customers", customers);
+		model.addAttribute("customers", customers);
 		
 		// 展示
-		req.getRequestDispatcher("/WEB-INF/jsp/customers.jsp").forward(req, resp);
+		return "customers";
 	}
 }

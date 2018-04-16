@@ -1,0 +1,4 @@
+spring mvc配置步骤：
+1. web.xml中添加dispatcherServlet（前端控制器）
+2. AppConfig中重写configureViewResolvers，配置jsp路径
+3. 编写@Controller @RequestMapping方法处理请求
