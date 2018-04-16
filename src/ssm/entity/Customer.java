@@ -30,4 +30,10 @@ public class Customer {
 	public void setVip(boolean vip) {
 		this.vip = vip;
 	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", address=" + address
+				+ ", vip=" + vip + "]";
+	}
+	
 }

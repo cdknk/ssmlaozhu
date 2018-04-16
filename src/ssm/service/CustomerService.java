@@ -8,4 +8,6 @@ public interface CustomerService {
 
 	List<Customer> findAll();
 
+	void create(Customer customer);
+
 }

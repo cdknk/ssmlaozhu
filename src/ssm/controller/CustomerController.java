@@ -2,6 +2,8 @@ package ssm.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,5 +42,12 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/new")
 	public String newCustomer() {
 		return "customers-new";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/customers/new")
+	public String createCustomer(Customer customer) { // 表单bean封装
+		System.out.println("添加客户: " + customer);
+		customerService.create(customer);
+		return "redirect:/customers"; // 重定向
 	}
 }

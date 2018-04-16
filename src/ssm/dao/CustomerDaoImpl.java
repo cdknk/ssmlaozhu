@@ -23,8 +23,15 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public List<Customer> findAll() {
-		String sql = "SELECT id, name, address, vip FROM CUSTOMERS";
+		String sql = "SELECT id, name, address, vip FROM CUSTOMERS order by id desc";
 		return jdbcTemplate.query(sql, new CustomerRowMapper());
+	}
+
+	@Override
+	public void create(Customer customer) {
+		String sql = "insert into customers(name, address, vip) values(?, ?, ?)";
+		jdbcTemplate.update(sql, 
+				customer.getName(), customer.getAddress(), customer.isVip());
 	}
 
 }
