@@ -10,6 +10,9 @@
 </head>
 <body>
 	<h3>客户列表</h3>
+	<div>
+		<a href="/ssm/customers/new">添加</a>
+	</div>
 	<table>
 		<tr>
 			<th>#</th><th>姓名</th><th>住址</th><th>VIP?</th>

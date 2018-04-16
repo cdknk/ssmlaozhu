@@ -36,4 +36,9 @@ public class CustomerController {
 		// 展示
 		return "customers";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/customers/new")
+	public String newCustomer() {
+		return "customers-new";
+	}
 }
