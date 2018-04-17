@@ -24,7 +24,11 @@
 			<td>${customer.name}</td>
 			<td>${customer.address}</td>
 			<td>${customer.vip ? "是" : "否"}</td>
-			<td><a href="/ssm/customers/${customer.id}/edit">修改</a></td>
+			
+			<td>
+				<a href="/ssm/customers/${customer.id}/details">详情</a>
+				<a href="/ssm/customers/${customer.id}/edit">修改</a>
+			</td>
 		</tr>
 	</c:forEach>
 		

@@ -67,4 +67,11 @@ public class CustomerController {
 		customerService.update(customer);
 		return "redirect:/customers";
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/details")
+	public String details(@PathVariable Long id, Model model) {
+		Customer customer = customerService.findOne(id);
+		model.addAttribute("customer", customer);
+		return "customer-details";
+	}
 }
