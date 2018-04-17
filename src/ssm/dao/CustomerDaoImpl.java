@@ -40,6 +40,13 @@ public class CustomerDaoImpl implements CustomerDao {
 		return jdbcTemplate.queryForObject(sql, new CustomerRowMapper(), id);
 	}
 
+	@Override
+	public void update(Customer customer) {
+		String sql = "update customers set name = ?, address = ?, vip = ? where id = ?";
+		jdbcTemplate.update(sql, 
+				customer.getName(), customer.getAddress(), customer.isVip(), customer.getId());
+	}
+
 }
 
 class CustomerRowMapper implements RowMapper<Customer> {

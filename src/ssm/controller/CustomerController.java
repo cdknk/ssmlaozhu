@@ -60,4 +60,11 @@ public class CustomerController {
 		model.addAttribute("customer", customer);
 		return "customers-edit";
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/edit")
+	public String update(@PathVariable Long id, Customer customer) {
+		customer.setId(id);
+		customerService.update(customer);
+		return "redirect:/customers";
+	}
 }

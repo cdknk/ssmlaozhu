@@ -12,4 +12,6 @@ public interface CustomerDao {
 
 	Customer findOne(Long id);
 
+	void update(Customer customer);
+
 }

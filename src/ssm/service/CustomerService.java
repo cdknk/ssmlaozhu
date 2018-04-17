@@ -12,4 +12,6 @@ public interface CustomerService {
 
 	Customer findOne(Long id);
 
+	void update(Customer customer);
+
 }

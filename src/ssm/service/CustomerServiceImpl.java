@@ -33,4 +33,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findOne(id);
 	}
 
+	@Override
+	public void update(Customer customer) {
+		customerDao.update(customer);
+	}
+
 }
