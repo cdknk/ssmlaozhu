@@ -43,4 +43,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.delete(id);
 	}
 
+	@Override
+	public void batchDelete(List<Long> idList) {
+		customerDao.batchDelete(idList);
+	}
+
 }

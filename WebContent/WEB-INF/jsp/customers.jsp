@@ -14,14 +14,20 @@
 	<h3>客户列表</h3>
 	<div>
 		<a class="btn btn-default" href="/ssm/customers/new">添加</a>
+		
+		<button type="button" class="btn btn-danger" id="batch-delete-btn">删除</button>
+		<form action="/ssm/customers/batch-delete" method="post" style="display: none;" id="batch-delete-form">
+			<input type="hidden" name="ids">
+		</form>
 	</div>
 	<table class="table table-striped">
 		<tr>
-			<th>#</th><th>姓名</th><th>住址</th><th>VIP?</th><th>操作</th>
+			<th></th><th>#</th><th>姓名</th><th>住址</th><th>VIP?</th><th>操作</th>
 		</tr>
 		
 	<c:forEach var="customer" items="${customers}">
 		<tr>
+			<td><input type="checkbox" data-customer-id="${customer.id}"></td>
 			<td>#${customer.id}</td>
 			<td>${customer.name}</td>
 			<td>${customer.address}</td>
@@ -40,5 +46,7 @@
 		
 	</table>
   </div>
+  <script type="text/javascript" src="/ssm/assets/jquery/jquery.js"></script>
+  <script type="text/javascript" src="/ssm/assets/js/customer-list.js"></script>
 </body>
 </html>

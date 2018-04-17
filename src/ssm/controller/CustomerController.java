@@ -1,5 +1,6 @@
 package ssm.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import ssm.entity.Customer;
 import ssm.service.CustomerService;
@@ -78,6 +80,19 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/delete")
 	public String delete(@PathVariable Long id) {
 		customerService.delete(id);
+		return "redirect:/customers";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/customers/batch-delete")
+	public String batchDelete(@RequestParam String ids) {
+		List<Long> idList = new ArrayList<>();
+		for (String id : ids.split(",")) {
+			idList.add(Long.valueOf(id));
+		}
+		
+		System.out.println("批量删除: #" + idList);
+		customerService.batchDelete(idList);
+		
 		return "redirect:/customers";
 	}
 }

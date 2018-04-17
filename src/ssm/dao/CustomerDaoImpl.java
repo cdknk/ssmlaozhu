@@ -53,6 +53,15 @@ public class CustomerDaoImpl implements CustomerDao {
 		jdbcTemplate.update(sql, id);
 	}
 
+	@Override
+	public void batchDelete(List<Long> idList) {
+		// TODO 待研究
+//		String sql = "delete from customers where id in (?)";
+//		jdbcTemplate.update(sql, idList);
+		for (Long id : idList) {
+			delete(id);
+		}
+	}
 }
 
 class CustomerRowMapper implements RowMapper<Customer> {
