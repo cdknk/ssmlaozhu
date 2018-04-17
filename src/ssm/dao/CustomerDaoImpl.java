@@ -34,6 +34,12 @@ public class CustomerDaoImpl implements CustomerDao {
 				customer.getName(), customer.getAddress(), customer.isVip());
 	}
 
+	@Override
+	public Customer findOne(Long id) {
+		String sql = "SELECT id, name, address, vip FROM CUSTOMERS where id = ?";
+		return jdbcTemplate.queryForObject(sql, new CustomerRowMapper(), id);
+	}
+
 }
 
 class CustomerRowMapper implements RowMapper<Customer> {

@@ -28,4 +28,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.create(customer);
 	}
 
+	@Override
+	public Customer findOne(Long id) {
+		return customerDao.findOne(id);
+	}
+
 }

@@ -10,4 +10,6 @@ public interface CustomerService {
 
 	void create(Customer customer);
 
+	Customer findOne(Long id);
+
 }

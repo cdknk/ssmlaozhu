@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -49,5 +50,14 @@ public class CustomerController {
 		System.out.println("添加客户: " + customer);
 		customerService.create(customer);
 		return "redirect:/customers"; // 重定向
+	}
+	
+	// GET /customers/28/edit
+	@RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/edit")
+	public String edit(@PathVariable Long id, Model model) {
+		Customer customer = customerService.findOne(id);
+		System.out.println("修改: #" + id + ", " + customer);
+		model.addAttribute("customer", customer);
+		return "customers-edit";
 	}
 }

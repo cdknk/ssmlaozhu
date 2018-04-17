@@ -15,7 +15,7 @@
 	</div>
 	<table>
 		<tr>
-			<th>#</th><th>姓名</th><th>住址</th><th>VIP?</th>
+			<th>#</th><th>姓名</th><th>住址</th><th>VIP?</th><th>操作</th>
 		</tr>
 		
 	<c:forEach var="customer" items="${customers}">
@@ -24,6 +24,7 @@
 			<td>${customer.name}</td>
 			<td>${customer.address}</td>
 			<td>${customer.vip ? "是" : "否"}</td>
+			<td><a href="/ssm/customers/${customer.id}/edit">修改</a></td>
 		</tr>
 	</c:forEach>
 		
