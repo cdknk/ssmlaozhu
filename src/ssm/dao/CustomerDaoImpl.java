@@ -47,6 +47,12 @@ public class CustomerDaoImpl implements CustomerDao {
 				customer.getName(), customer.getAddress(), customer.isVip(), customer.getId());
 	}
 
+	@Override
+	public void delete(Long id) {
+		String sql = "delete from customers where id = ?";
+		jdbcTemplate.update(sql, id);
+	}
+
 }
 
 class CustomerRowMapper implements RowMapper<Customer> {

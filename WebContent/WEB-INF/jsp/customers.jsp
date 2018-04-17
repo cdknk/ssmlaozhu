@@ -28,6 +28,10 @@
 			<td>
 				<a href="/ssm/customers/${customer.id}/details">详情</a>
 				<a href="/ssm/customers/${customer.id}/edit">修改</a>
+				<form action="/ssm/customers/${customer.id}/delete" method="post"
+				      style="display: inline;">
+					<button type="submit">删除</button>
+				</form>
 			</td>
 		</tr>
 	</c:forEach>

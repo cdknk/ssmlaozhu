@@ -38,4 +38,9 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.update(customer);
 	}
 
+	@Override
+	public void delete(Long id) {
+		customerDao.delete(id);
+	}
+
 }
