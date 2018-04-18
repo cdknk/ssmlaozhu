@@ -10,6 +10,11 @@ $('#batch-delete-btn').click(function() {
 			return $(this).data('customer-id'); // 从复选框上获取data
 		});
 	
+	if (ids.length === 0) {
+		console.log('noop');
+		return;
+	}
+	
 	// 为什么不直接ids.join(',') 因为ids不是一个真正的数组
 	var idsCsv = Array.prototype.join.call(ids, ','); // 将id数组转换成逗号分隔id的字符串
 	

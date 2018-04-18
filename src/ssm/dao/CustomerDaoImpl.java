@@ -3,6 +3,7 @@ package ssm.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.StringJoiner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -55,12 +56,20 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void batchDelete(List<Long> idList) {
-		// TODO 待研究
-//		String sql = "delete from customers where id in (?)";
-//		jdbcTemplate.update(sql, idList);
-		for (Long id : idList) {
-			delete(id);
+		// in (31, 32)
+		if (idList.isEmpty()) {
+			throw new RuntimeException("请选择要删除的行");
 		}
+		StringJoiner joiner = new StringJoiner(
+				",", 
+				"delete from customers where id in (",
+				")");
+		for (Long id : idList) {
+			joiner.add("?");
+		}
+		String sql = joiner.toString();
+		System.out.println("batchDelete: " + sql);
+		jdbcTemplate.update(sql, idList.toArray()); // sql传参通过数组传的
 	}
 }
 
