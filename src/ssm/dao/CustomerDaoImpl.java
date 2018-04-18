@@ -32,7 +32,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public void create(Customer customer) {
 		String sql = "insert into customers(name, address, vip) values(?, ?, ?)";
 		jdbcTemplate.update(sql, 
-				customer.getName(), customer.getAddress(), customer.isVip());
+				customer.getName(), customer.getAddress(), customer.getVip());
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public void update(Customer customer) {
 		String sql = "update customers set name = ?, address = ?, vip = ? where id = ?";
 		jdbcTemplate.update(sql, 
-				customer.getName(), customer.getAddress(), customer.isVip(), customer.getId());
+				customer.getName(), customer.getAddress(), customer.getVip(), customer.getId());
 	}
 
 	@Override
