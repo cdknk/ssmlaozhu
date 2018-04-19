@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,17 +46,15 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/new")
-	public String newCustomer(Model model) {
-		model.addAttribute("customer", new Customer());
+	public String newCustomer(@ModelAttribute Customer customer) {
 		return "customers-new";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/new")
-	public String createCustomer(@Valid Customer customer, BindingResult bindingResult, Model model) { // 表单bean封装
+	public String createCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) { // 表单bean封装
 		// 使用@Valid进行校验，BindingResult获得校验结果，它们往往成对出现，并且要保证先后顺序
 		System.out.println("添加客户: " + customer);
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("customer", customer);
 			return "customers-new";
 		} else {
 			customerService.create(customer);
@@ -73,10 +72,15 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/edit")
-	public String update(@PathVariable Long id, Customer customer) {
-		customer.setId(id);
-		customerService.update(customer);
-		return "redirect:/customers";
+	public String update(@PathVariable Long id, 
+			@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "customers-edit";
+		} else {
+			customer.setId(id);
+			customerService.update(customer);
+			return "redirect:/customers";			
+		}
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/details")
