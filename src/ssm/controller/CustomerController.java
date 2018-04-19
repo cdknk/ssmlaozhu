@@ -1,5 +1,7 @@
 package ssm.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import ssm.entity.Customer;
 import ssm.service.CustomerService;
@@ -24,6 +27,8 @@ import ssm.service.CustomerService;
 public class CustomerController {
 	
 	private CustomerService customerService;
+	
+	private String uploadDir = "D:/zhujunqi/upload"; // TODO 配置外部化
 	
 	@Autowired
 	public CustomerController(CustomerService customerService) {
@@ -66,18 +71,31 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/{id}/edit")
 	public String edit(@PathVariable Long id, Model model) {
 		Customer customer = customerService.findOne(id);
-		System.out.println("修改: #" + id + ", " + customer);
+		System.out.println("GET 修改: #" + id + ", " + customer);
 		model.addAttribute("customer", customer);
 		return "customers-edit";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/{id}/edit")
 	public String update(@PathVariable Long id, 
-			@Valid @ModelAttribute Customer customer, BindingResult bindingResult) {
+			@Valid @ModelAttribute Customer customer, BindingResult bindingResult) throws Exception {
+		
+		System.out.println("POST 修改：" + customer);
+		System.out.println("照片: " + customer.getPicture().getOriginalFilename() + ", " 
+							+ customer.getPicture().getSize() + "字节");
+		
+		if (customer.getPicture().getSize() == 0 
+				|| !customer.getPicture().getContentType().toLowerCase().startsWith("image/")) {
+			// 手动添加校验错误
+			bindingResult.rejectValue("picture", "formError.pictureRequired", "请选择照片");
+		}
+		
 		if (bindingResult.hasErrors()) {
 			return "customers-edit";
 		} else {
 			customer.setId(id);
+			// TODO 需要将文件保存的路径存入数据库，以便后续在详情页显示客户照片
+			customer.getPicture().transferTo(new File(uploadDir, customer.getPicture().getOriginalFilename()));
 			customerService.update(customer);
 			return "redirect:/customers";			
 		}

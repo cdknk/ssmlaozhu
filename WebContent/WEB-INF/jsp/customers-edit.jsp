@@ -16,7 +16,7 @@
 </head>
 <body>
 	<h3>${title}</h3>
-	<form:form action="" method="post" commandName="customer">
+	<form:form action="" method="post" commandName="customer" enctype="multipart/form-data">
 		姓名 <form:input type="text" path="name" />
 		<form:errors path="name" cssClass="field-error"></form:errors>
 		<br>
@@ -26,6 +26,9 @@
 		VIP 是<form:radiobutton path="vip" value="true" />
 		            否<form:radiobutton path="vip" value="false" />
 		<form:errors path="vip" cssClass="field-error"></form:errors>          
+		<br>
+		<input type="file" name="picture">
+		<form:errors path="picture" cssClass="field-error"></form:errors>   
 		<br>
 		<button type="submit">提交</button>
 	</form:form>

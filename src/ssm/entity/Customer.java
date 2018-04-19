@@ -3,6 +3,8 @@ package ssm.entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Customer {
 	private Long id;
 	
@@ -14,6 +16,8 @@ public class Customer {
 
 	@NotNull(message = "必填")
 	private Boolean vip;
+	
+	private MultipartFile picture;
 	
 	public Long getId() {
 		return id;
@@ -41,10 +45,15 @@ public class Customer {
 		this.vip = vip;
 	}
 	
+	public MultipartFile getPicture() {
+		return picture;
+	}
+	public void setPicture(MultipartFile picture) {
+		this.picture = picture;
+	}
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", address=" + address
-				+ ", vip=" + vip + "]";
+				+ ", vip=" + vip + ", picture=" + picture + "]";
 	}
-	
 }

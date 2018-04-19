@@ -14,3 +14,17 @@ task1: 图书CRUD
 - 图书删除
 
 图书属性：书名、作者、 出版社、 出版年份、 简介、 类别
+
+-----------------------------------
+
+文件上传
+1. 表单重要属性: method="post" enctype="multipart/form-data"
+2. 手动定义@Bean MultipartResolver
+3. 获取文件字段：
+  a. 在控制器方法中：@RequestParam MultipartFile file
+  b. 在实体类中：private MultipartFile file
+4. 获取文件信息
+  a. getOriginalFilename() 获取用户电脑上的文件名
+  b. getSize() 获取文件字节数，当没有上传文件时为0
+  c. getContentType() 获取文件内容类型，参考MIME
+  d. transferTo(目标文件) 将上传的文件移至目标文件

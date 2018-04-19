@@ -10,6 +10,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -53,5 +55,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		// GET    /assets/bootstrap/css/bootstrap.min.css
 		// 资源路径    /public/bootstrap/css/bootstrap.min.css
 		registry.addResourceHandler("/assets/**").addResourceLocations("/public/");
+	}
+	
+	@Bean
+	public MultipartResolver multipartResolver() { // 文件名必须要这么写，因为spring mvc会用这个id查找多部解析器
+		CommonsMultipartResolver mr = new CommonsMultipartResolver();
+		mr.setMaxUploadSize(10 * 1024 * 1024); // 字节
+		return mr;
 	}
 }
