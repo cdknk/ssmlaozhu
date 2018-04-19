@@ -2,3 +2,15 @@ spring mvc配置步骤：
 1. web.xml中添加dispatcherServlet（前端控制器）
 2. AppConfig中重写configureViewResolvers，配置jsp路径
 3. 编写@Controller @RequestMapping方法处理请求
+
+-----------------------------------
+
+task1: 图书CRUD
+
+- 图书列表 -> 某本图书详情
+- 图书搜索（根据书名包含关键字搜索）
+- 图书添加
+- 图书修改
+- 图书删除
+
+图书属性：书名、作者、 出版社、 出版年份、 简介、 类别
