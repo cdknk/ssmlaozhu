@@ -47,7 +47,7 @@ public class CustomerController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/customers/new")
 	public String newCustomer(@ModelAttribute Customer customer) {
-		return "customers-new";
+		return "customers-edit";
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/new")
@@ -55,7 +55,7 @@ public class CustomerController {
 		// 使用@Valid进行校验，BindingResult获得校验结果，它们往往成对出现，并且要保证先后顺序
 		System.out.println("添加客户: " + customer);
 		if (bindingResult.hasErrors()) {
-			return "customers-new";
+			return "customers-edit";
 		} else {
 			customerService.create(customer);
 			return "redirect:/customers"; // 重定向
