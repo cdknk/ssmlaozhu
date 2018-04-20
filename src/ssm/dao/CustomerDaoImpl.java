@@ -23,9 +23,11 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List<Customer> findAll() {
-		String sql = "SELECT id, name, address, vip FROM CUSTOMERS order by id desc";
-		return jdbcTemplate.query(sql, new CustomerRowMapper());
+	public List<Customer> findAll(int page) {
+		int limit = 3;
+		String sql = "SELECT id, name, address, vip FROM CUSTOMERS order by id desc "
+				     + "offset ? limit ?";
+		return jdbcTemplate.query(sql, new CustomerRowMapper(), (page - 1) * limit, limit);
 	}
 
 	@Override

@@ -37,11 +37,12 @@ public class CustomerController {
 
 	// 指定此控制器方法用来处理GET /customers
 	@RequestMapping(method = RequestMethod.GET, value = "/customers")
-	public String findAll(Model model) {
-		System.out.println("处理: GET /customers");
+	public String findAll(Model model, 
+			@RequestParam(required = false, defaultValue = "1") int page) {
+		System.out.println("处理: GET /customers, page=" + page);
 		
 		// 调service
-		List<Customer> customers = customerService.findAll();
+		List<Customer> customers = customerService.findAll(page);
 		
 		// 数据放model
 		model.addAttribute("customers", customers);

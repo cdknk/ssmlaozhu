@@ -6,7 +6,7 @@ import ssm.entity.Customer;
 
 public interface CustomerService {
 
-	List<Customer> findAll();
+	List<Customer> findAll(int page);
 
 	void create(Customer customer);
 
