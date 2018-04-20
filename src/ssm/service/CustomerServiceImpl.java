@@ -19,8 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Customer> findAll(int page) {
-		return customerDao.findAll(page);
+	public List<Customer> findAll(int page, int limit) {
+		return customerDao.findAll(page, limit);
 	}
 
 	@Override
@@ -46,6 +46,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void batchDelete(List<Long> idList) {
 		customerDao.batchDelete(idList);
+	}
+
+	@Override
+	public Long count() {
+		return customerDao.count();
 	}
 
 }

@@ -6,7 +6,7 @@ import ssm.entity.Customer;
 
 public interface CustomerDao {
 
-	List<Customer> findAll(int page);
+	List<Customer> findAll(int page, int limit);
 
 	void create(Customer customer);
 
@@ -17,5 +17,7 @@ public interface CustomerDao {
 	void delete(Long id);
 
 	void batchDelete(List<Long> idList);
+
+	Long count();
 
 }

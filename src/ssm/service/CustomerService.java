@@ -6,7 +6,7 @@ import ssm.entity.Customer;
 
 public interface CustomerService {
 
-	List<Customer> findAll(int page);
+	List<Customer> findAll(int page, int limit);
 
 	void create(Customer customer);
 
@@ -18,4 +18,5 @@ public interface CustomerService {
 
 	void batchDelete(List<Long> idList);
 
+	Long count();
 }

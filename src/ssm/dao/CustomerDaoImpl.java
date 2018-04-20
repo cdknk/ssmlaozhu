@@ -23,8 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public List<Customer> findAll(int page) {
-		int limit = 3;
+	public List<Customer> findAll(int page, int limit) {
 		String sql = "SELECT id, name, address, vip FROM CUSTOMERS order by id desc "
 				     + "offset ? limit ?";
 		return jdbcTemplate.query(sql, new CustomerRowMapper(), (page - 1) * limit, limit);
@@ -72,6 +71,12 @@ public class CustomerDaoImpl implements CustomerDao {
 		String sql = joiner.toString();
 		System.out.println("batchDelete: " + sql);
 		jdbcTemplate.update(sql, idList.toArray()); // sql传参通过数组传的
+	}
+
+	@Override
+	public Long count() {
+		String sql = "select count(*) from customers";
+		return jdbcTemplate.queryForObject(sql, Long.class);
 	}
 }
 

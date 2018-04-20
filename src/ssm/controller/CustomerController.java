@@ -42,10 +42,15 @@ public class CustomerController {
 		System.out.println("处理: GET /customers, page=" + page);
 		
 		// 调service
-		List<Customer> customers = customerService.findAll(page);
+		int limit = 3; // 每页条数
+		List<Customer> customers = customerService.findAll(page, limit);
+		long customerCount = customerService.count();
+		int pageCount = (int) Math.ceil(customerCount / (double)limit);
 		
 		// 数据放model
 		model.addAttribute("customers", customers);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("currentPage", page);
 		
 		// 展示
 		return "customers";

@@ -47,8 +47,27 @@
 	</c:forEach>
 		
 	</table>
+	
+<!-- 	分页器 -->
+	<ul id="pagination" class="pagination-sm"></ul>
+	
   </div>
   <script type="text/javascript" src="${contextPath}/assets/jquery/jquery.js"></script>
+  <script type="text/javascript" src="${contextPath}/assets/twbs-pagination/jquery.twbsPagination.min.js"></script>
   <script type="text/javascript" src="${contextPath}/assets/js/customer-list.js"></script>
+  
+  <script>
+  $('#pagination').twbsPagination({
+      totalPages: ${pageCount},
+      visiblePages: 7,
+      onPageClick: function (event, page) {
+          console.log('go to page ' + page);
+          window.location = '${contextPath}/customers?page=' + page;
+      },
+      initiateStartPageClick: false,
+      startPage: ${currentPage}
+  });
+  </script>
+  
 </body>
 </html>
