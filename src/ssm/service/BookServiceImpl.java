@@ -23,4 +23,9 @@ public class BookServiceImpl implements BookService {
 		return bookDao.findAll();
 	}
 
+	@Override
+	public void create(Book book) {
+		bookDao.create(book);
+	}
+
 }

@@ -8,4 +8,6 @@ public interface BookDao {
 
 	List<Book> findAll();
 
+	void create(Book book);
+
 }

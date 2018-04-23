@@ -8,4 +8,6 @@ public interface BookService {
 
 	List<Book> findAll();
 
+	void create(Book book);
+
 }
