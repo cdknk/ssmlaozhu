@@ -12,9 +12,17 @@
         	// 自动加载数据时调用
             loadData: function() {
             	console.log('loading data...');
-            	return $.ajax('http://localhost:8080/ssm/books/', {method: 'GET'});
+            	return $.ajax('/ssm/books/', {method: 'GET'});
             },
-            insertItem: $.noop,
+            insertItem: function(item) {
+            	console.log('insert', item);
+            	var json = JSON.stringify(item); // 把js对象用json格式转成字符串
+            	return $.ajax('/ssm/books/', {
+            		method: 'POST',
+            		data: json,
+            		contentType: 'application/json; charset=UTF-8'
+            	});
+            },
             updateItem: $.noop,
             deleteItem: $.noop
         },
