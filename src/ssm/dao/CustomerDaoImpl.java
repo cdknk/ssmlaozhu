@@ -24,7 +24,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public List<Customer> findAll(int page, int limit) {
-		String sql = "SELECT id, name, address, vip FROM CUSTOMERS order by id desc "
+		String sql = "SELECT id, name, address, vip, picture_path FROM CUSTOMERS order by id desc "
 				     + "offset ? limit ?";
 		return jdbcTemplate.query(sql, new CustomerRowMapper(), (page - 1) * limit, limit);
 	}
@@ -38,15 +38,18 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public Customer findOne(Long id) {
-		String sql = "SELECT id, name, address, vip FROM CUSTOMERS where id = ?";
+		String sql = "SELECT id, name, address, vip, picture_path FROM CUSTOMERS where id = ?";
 		return jdbcTemplate.queryForObject(sql, new CustomerRowMapper(), id);
 	}
 
 	@Override
 	public void update(Customer customer) {
-		String sql = "update customers set name = ?, address = ?, vip = ? where id = ?";
+		String sql = "update customers "
+				+ "set name = ?, address = ?, vip = ?, picture_path = ? "
+				+ "where id = ?";
 		jdbcTemplate.update(sql, 
-				customer.getName(), customer.getAddress(), customer.getVip(), customer.getId());
+				customer.getName(), customer.getAddress(), customer.getVip(), customer.getPicturePath(),
+				customer.getId());
 	}
 
 	@Override
@@ -89,6 +92,7 @@ class CustomerRowMapper implements RowMapper<Customer> {
 		customer.setName(resultSet.getString(2));
 		customer.setAddress(resultSet.getString(3));
 		customer.setVip(resultSet.getBoolean(4));
+		customer.setPicturePath(resultSet.getString(5));
 		return customer;
 	}
 	

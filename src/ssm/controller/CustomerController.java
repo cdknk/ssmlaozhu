@@ -42,7 +42,7 @@ public class CustomerController {
 		System.out.println("处理: GET /customers, page=" + page);
 		
 		// 调service
-		int limit = 3; // 每页条数
+		int limit = 10; // 每页条数
 		List<Customer> customers = customerService.findAll(page, limit);
 		long customerCount = customerService.count();
 		int pageCount = (int) Math.ceil(customerCount / (double)limit);
@@ -87,7 +87,8 @@ public class CustomerController {
 			@Valid @ModelAttribute Customer customer, BindingResult bindingResult) throws Exception {
 		
 		System.out.println("POST 修改：" + customer);
-		System.out.println("照片: " + customer.getPicture().getOriginalFilename() + ", " 
+		String filename = customer.getPicture().getOriginalFilename();
+		System.out.println("照片: " + filename + ", " 
 							+ customer.getPicture().getSize() + "字节");
 		
 		if (customer.getPicture().getSize() == 0 
@@ -101,7 +102,8 @@ public class CustomerController {
 		} else {
 			customer.setId(id);
 			// TODO 需要将文件保存的路径存入数据库，以便后续在详情页显示客户照片
-			customer.getPicture().transferTo(new File(uploadDir, customer.getPicture().getOriginalFilename()));
+			customer.getPicture().transferTo(new File(uploadDir, filename));
+			customer.setPicturePath(filename);
 			customerService.update(customer);
 			return "redirect:/customers";			
 		}

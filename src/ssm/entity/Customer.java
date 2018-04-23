@@ -19,6 +19,9 @@ public class Customer {
 	
 	private MultipartFile picture;
 	
+	// 选择保存到数据库的文件路径时，要考虑重名冲突，如有可能冲突，需要加id或其它可用的去重标识
+	private String picturePath;
+	
 	public Long getId() {
 		return id;
 	}
@@ -51,9 +54,17 @@ public class Customer {
 	public void setPicture(MultipartFile picture) {
 		this.picture = picture;
 	}
+	
+	public String getPicturePath() {
+		return picturePath;
+	}
+	public void setPicturePath(String picturePath) {
+		this.picturePath = picturePath;
+	}
+	
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", address=" + address
-				+ ", vip=" + vip + ", picture=" + picture + "]";
+				+ ", vip=" + vip + ", picturePath=" + picturePath + "]";
 	}
 }
