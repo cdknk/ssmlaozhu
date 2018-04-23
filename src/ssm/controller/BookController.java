@@ -12,6 +12,11 @@ import ssm.entity.Book;
 
 @Controller
 public class BookController {
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/books-crud")
+	public String crudGrid() {
+		return "books-crud";
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/books/")
 	@ResponseBody // 把返回值通过某种格式(json或xml)转成文本作为响应

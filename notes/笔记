@@ -31,6 +31,8 @@ task1: 图书CRUD
   
 -----------------------------------
 
+API: application programming interface
+
 浏览器JSON支持：
 a. 解析     JSON.parse(jsonStr)
 b. 文本化 JSON.stringify(js对象或数组)  
