@@ -28,3 +28,9 @@ task1: 图书CRUD
   b. getSize() 获取文件字节数，当没有上传文件时为0
   c. getContentType() 获取文件内容类型，参考MIME
   d. transferTo(目标文件) 将上传的文件移至目标文件
+  
+-----------------------------------
+
+浏览器JSON支持：
+a. 解析     JSON.parse(jsonStr)
+b. 文本化 JSON.stringify(js对象或数组)  
