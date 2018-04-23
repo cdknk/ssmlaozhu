@@ -1,8 +1,3 @@
-    var books = [
-       {id: 1, title: 'b1', author: 'a1', publisher: 'p1'},
-       {id: 2, title: 'b2', author: 'a2', publisher: 'p2'}
-    ];
-
     $("#jsGrid").jsGrid({
         width: "100%",
         height: "400px",
@@ -12,7 +7,17 @@
         sorting: true,
         paging: true,
 
-        data: books,
+        autoload: true,
+        controller: {
+        	// 自动加载数据时调用
+            loadData: function() {
+            	console.log('loading data...');
+            	return $.ajax('http://localhost:8080/ssm/books/', {method: 'GET'});
+            },
+            insertItem: $.noop,
+            updateItem: $.noop,
+            deleteItem: $.noop
+        },
 
         fields: [
             { name: "title", type: "text", width: 150, validate: "required", title: '书名' },
