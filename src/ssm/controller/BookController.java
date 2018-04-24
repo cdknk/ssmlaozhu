@@ -57,7 +57,7 @@ public class BookController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/books/{id}")
-	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@ResponseStatus(HttpStatus.NO_CONTENT) // 按照REST风格，响应没有内容时的状态码
 	public void delete(@PathVariable Integer id) {
 		bookService.delete(id);
 	}

@@ -32,7 +32,12 @@
             		contentType: 'application/json; charset=UTF-8'
             	});
             },
-            deleteItem: $.noop
+            deleteItem: function(item) {
+            	console.log('delete', item);
+            	return $.ajax('/ssm/books/' + item.id, {
+            		method: 'DELETE'
+            	});            	
+            }
         },
 
         fields: [
