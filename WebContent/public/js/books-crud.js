@@ -26,8 +26,8 @@
             updateItem: function(item) {
             	console.log('update', item);
             	var json = JSON.stringify(item); // 把js对象用json格式转成字符串
-            	return $.ajax('/ssm/books/', {
-            		method: 'POST',
+            	return $.ajax('/ssm/books/' + item.id, {
+            		method: 'PUT',
             		data: json,
             		contentType: 'application/json; charset=UTF-8'
             	});
