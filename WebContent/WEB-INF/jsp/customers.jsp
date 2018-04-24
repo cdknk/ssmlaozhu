@@ -10,6 +10,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>客户列表</title>
 	<link rel="stylesheet" href="${contextPath}/assets/bootstrap/css/bootstrap.min.css">
+	<link href="${contextPath}/assets/toastr/toastr.min.css" rel="stylesheet"/>
 </head>
 <body>
   <div class="container">
@@ -69,9 +70,11 @@
   });
   </script>
   
+  <script src="${contextPath}/assets/toastr/toastr.min.js"></script>
+  
   <c:if test="${customerCreated != null}">
     <script type="text/javascript">
-  		alert('添加成功: ${customerCreated}');
+    	toastr.success('${customerCreated}', '添加成功');
     </script>
   </c:if>
 
