@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ssm.entity.Customer;
 import ssm.service.CustomerService;
@@ -62,13 +63,16 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/customers/new")
-	public String createCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult) { // 表单bean封装
+	public String createCustomer(@Valid @ModelAttribute Customer customer, BindingResult bindingResult,
+								 RedirectAttributes redirectAttributes) { // 表单bean封装
 		// 使用@Valid进行校验，BindingResult获得校验结果，它们往往成对出现，并且要保证先后顺序
 		System.out.println("添加客户: " + customer);
 		if (bindingResult.hasErrors()) {
 			return "customers-edit";
 		} else {
 			customerService.create(customer);
+			// RedirectAttributes同时还可以作为Model用(addAttribute)，添加flash属性必须用addFlashAttribute
+			redirectAttributes.addFlashAttribute("customerCreated", customer.getName());
 			return "redirect:/customers"; // 重定向
 		}
 	}

@@ -69,5 +69,11 @@
   });
   </script>
   
+  <c:if test="${customerCreated != null}">
+    <script type="text/javascript">
+  		alert('添加成功: ${customerCreated}');
+    </script>
+  </c:if>
+
 </body>
 </html>
