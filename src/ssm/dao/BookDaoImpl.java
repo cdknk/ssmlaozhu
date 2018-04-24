@@ -56,6 +56,12 @@ public class BookDaoImpl implements BookDao {
 		jdbcTemplate.update(sql, 
 				book.getTitle(), book.getAuthor(), book.getPublisher(), book.getId());
 	}
+
+	@Override
+	public void delete(Integer id) {
+		String sql = "delete from books where id = ?";
+		jdbcTemplate.update(sql, id);
+	}
 }
 
 class BookMapper implements RowMapper<Book> {

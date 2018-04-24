@@ -36,3 +36,15 @@ API: application programming interface
 浏览器JSON支持：
 a. 解析     JSON.parse(jsonStr)
 b. 文本化 JSON.stringify(js对象或数组)  
+
+HTTP响应码惯例
+2xx: 成功
+3xx: 重定向
+4xx: 请求错误，如表单校验失败
+5xx: 服务端错误
+
+REST     API惯例
+GET     /xyz/        访问资源集合
+POST    /xyz/        新增一个资源
+PUT     /xyz/{id}    修改指定资源（替换）
+DELETE  /xyz/{id}    删除指定资源，返回204响应码
