@@ -23,7 +23,15 @@
             		contentType: 'application/json; charset=UTF-8'
             	});
             },
-            updateItem: $.noop,
+            updateItem: function(item) {
+            	console.log('update', item);
+            	var json = JSON.stringify(item); // 把js对象用json格式转成字符串
+            	return $.ajax('/ssm/books/', {
+            		method: 'POST',
+            		data: json,
+            		contentType: 'application/json; charset=UTF-8'
+            	});
+            },
             deleteItem: $.noop
         },
 

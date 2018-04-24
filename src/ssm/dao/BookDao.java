@@ -10,4 +10,6 @@ public interface BookDao {
 
 	void create(Book book);
 
+	void update(Book book);
+
 }

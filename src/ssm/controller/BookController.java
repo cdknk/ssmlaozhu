@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +28,8 @@ public class BookController {
 	public String crudGrid() {
 		return "books-crud";
 	}
+	
+	// REST API
 
 	@RequestMapping(method = RequestMethod.GET, value = "/books/")
 	@ResponseBody // 把返回值通过某种格式(json或xml)转成文本作为响应
@@ -40,6 +43,14 @@ public class BookController {
 		System.out.println("create book:  " + book);
 		bookService.create(book);
 		System.out.println("created book: " + book);
+		return book;
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/books/{id}")
+	@ResponseBody
+	public Book update(@PathVariable Integer id, @RequestBody Book book) {
+		book.setId(id);
+		bookService.update(book);
 		return book;
 	}
 }

@@ -28,4 +28,9 @@ public class BookServiceImpl implements BookService {
 		bookDao.create(book);
 	}
 
+	@Override
+	public void update(Book book) {
+		bookDao.update(book);
+	}
+
 }

@@ -49,6 +49,13 @@ public class BookDaoImpl implements BookDao {
 			keyHolder);
 		book.setId(keyHolder.getKey().intValue());
 	}
+
+	@Override
+	public void update(Book book) {
+		String sql = "update books set title = ?, author = ?, publisher = ? where id = ?";
+		jdbcTemplate.update(sql, 
+				book.getTitle(), book.getAuthor(), book.getPublisher(), book.getId());
+	}
 }
 
 class BookMapper implements RowMapper<Book> {
