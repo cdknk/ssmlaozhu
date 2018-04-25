@@ -1,4 +1,4 @@
-package ssm.dao;
+package ssm.dao.springjdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import ssm.dao.CustomerDao;
 import ssm.entity.Customer;
 
 @Repository

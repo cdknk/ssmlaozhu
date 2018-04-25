@@ -1,4 +1,4 @@
-package ssm.dao;
+package ssm.dao.springjdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import ssm.dao.BookDao;
 import ssm.entity.Book;
 
 @Repository
