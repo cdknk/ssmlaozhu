@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ssm.entity.Department;
 import ssm.service.DepartmentService;
@@ -38,5 +39,11 @@ public class DepartmentController {
 		List<Department> depOptions = departmentService.findAll();
 		model.addAttribute("depOptions", depOptions);
 		return "department-edit";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/api/departments")
+	@ResponseBody
+	public List<Department> depListJson() { // 配合jstree
+		return departmentService.findAll();
 	}
 }
