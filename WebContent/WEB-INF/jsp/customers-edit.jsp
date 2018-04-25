@@ -30,6 +30,7 @@
 		<input type="file" name="picture">
 		<form:errors path="picture" cssClass="field-error"></form:errors>   
 		<br>
+		
 		<button type="submit">提交</button>
 	</form:form>
 </body>

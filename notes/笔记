@@ -55,3 +55,22 @@ task2: 部门管理
 新增/修改部门：部门名称、上级部门（使用下拉列表实现）
 删除部门：删除部门（级联删除下级部门）
 部门列表
+
+建表：
+create table departments (
+  id identity,
+  name varchar(64) not null,
+  parent_id bigint references departments (id)
+)
+测试数据：
+SELECT * FROM DEPARTMENTS;
+
+insert into departments(name, parent_id) values ('海文', null);
+
+insert into departments(name, parent_id) values ('教育产品部', 1);
+insert into departments(name, parent_id) values ('人事部', 1);
+insert into departments(name, parent_id) values ('市场部', 1);
+
+insert into departments(name, parent_id) values ('电销部', 5);
+insert into departments(name, parent_id) values ('咨询部', 5);
+
