@@ -28,6 +28,14 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		return jdbcTemplate.query(sql, new DepartmentRowMapper());
 	}
 
+	@Override
+	public Department findOne(Long id) {
+		String sql = "SELECT d.id, d.name, d.parent_id, d2.name parent_name "
+				+ "FROM DEPARTMENTS d left join departments d2 on d.parent_id = d2.id "
+				+ "where d.id = ?";		
+		return jdbcTemplate.queryForObject(sql, new DepartmentRowMapper(), id);
+	}
+
 }
 
 class DepartmentRowMapper implements RowMapper<Department> {

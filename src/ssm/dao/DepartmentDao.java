@@ -8,4 +8,6 @@ public interface DepartmentDao {
 
 	List<Department> findAll();
 
+	Department findOne(Long id);
+
 }
