@@ -1,0 +1,7 @@
+基本套路：
+0. 编写mapper接口（包含需要的数据操作）
+1. 配置mybatis，如数据源，注册mapper接口
+2. 写实现mapper所需的SQL语句在mapper.xml
+3. 使用session获得mapper，调用数据操作
+
+重点：mapper接口和SQL语句
