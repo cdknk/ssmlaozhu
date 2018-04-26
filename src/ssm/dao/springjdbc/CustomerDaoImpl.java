@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import ssm.dao.CustomerDao;
 import ssm.entity.Customer;
 
-@Repository
+@Repository("customerDaoSpringJdbcImpl") // 使用指定id避免id冲突，而不是默认id（类名首字母小写）
 public class CustomerDaoImpl implements CustomerDao {
 
 	private JdbcTemplate jdbcTemplate;

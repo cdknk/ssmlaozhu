@@ -2,12 +2,15 @@ package ssm;
 
 import javax.sql.DataSource;
 
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.multipart.MultipartResolver;
@@ -22,6 +25,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = "ssm") 
 @EnableWebMvc
 @PropertySource("classpath:jdbc.properties")
+@MapperScan("ssm.dao.mybatis.mappers") // 扫描此包下的所有mapper接口并注册实现bean
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -63,5 +67,13 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		CommonsMultipartResolver mr = new CommonsMultipartResolver();
 		mr.setMaxUploadSize(10 * 1024 * 1024); // 字节
 		return mr;
+	}
+	
+	@Bean
+	public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource) {
+		SqlSessionFactoryBean sf = new SqlSessionFactoryBean();
+		sf.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
+		sf.setDataSource(dataSource);
+		return sf;
 	}
 }
