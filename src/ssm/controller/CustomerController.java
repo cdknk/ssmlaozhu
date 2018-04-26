@@ -48,6 +48,8 @@ public class CustomerController {
 		long customerCount = customerService.count();
 		int pageCount = (int) Math.ceil(customerCount / (double)limit);
 		
+		System.out.println(customers);
+		
 		// 数据放model
 		model.addAttribute("customers", customers);
 		model.addAttribute("pageCount", pageCount);
