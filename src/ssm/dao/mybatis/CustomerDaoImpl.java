@@ -23,7 +23,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public List<Customer> findAll(int page, int limit) {
-		return customerMapper.findAll();
+		return customerMapper.findAll((page - 1) * limit, limit);
 	}
 
 	@Override

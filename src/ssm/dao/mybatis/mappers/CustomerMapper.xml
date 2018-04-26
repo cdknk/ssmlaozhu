@@ -5,7 +5,9 @@
   
 <mapper namespace="ssm.dao.mybatis.mappers.CustomerMapper">
   <select id="findAll" resultType="ssm.entity.Customer">
-    SELECT * FROM CUSTOMERS
+		SELECT id, name, address, vip, picture_path 
+			FROM CUSTOMERS order by id desc
+			offset #{offset} limit #{limit}
   </select>
   
   <select id="count" resultType="long">
