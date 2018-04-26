@@ -12,7 +12,10 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -26,6 +29,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableWebMvc
 @PropertySource("classpath:jdbc.properties")
 @MapperScan("ssm.dao.mybatis.mappers") // 扫描此包下的所有mapper接口并注册实现bean
+@EnableTransactionManagement
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -75,5 +79,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		sf.setConfigLocation(new ClassPathResource("mybatis-config.xml"));
 		sf.setDataSource(dataSource);
 		return sf;
+	}
+	
+	@Bean
+	public PlatformTransactionManager transactionManager(DataSource dataSource) {
+		return new DataSourceTransactionManager(dataSource);
 	}
 }
