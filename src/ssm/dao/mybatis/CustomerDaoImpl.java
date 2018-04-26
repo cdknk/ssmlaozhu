@@ -1,6 +1,7 @@
 package ssm.dao.mybatis;
 
 import java.util.List;
+import java.util.StringJoiner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -48,7 +49,15 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void batchDelete(List<Long> idList) {
-//		TODO
+		// idList [1, 3, 5]
+		// =>     (1, 3, 5)
+		StringJoiner sj = new StringJoiner(",", "(", ")");
+		for (Long id : idList) {
+			sj.add(id.toString());
+		}
+		String idInList = sj.toString();
+		System.out.println("batchDelete: " + idInList);
+		customerMapper.batchDelete(idInList);
 	}
 
 	@Override

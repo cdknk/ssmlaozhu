@@ -20,13 +20,18 @@
   
   <update id="update">
   	update customers 
-  	    set name = #{name}, address = #{address}, vip = #{vip}, picture_path = #{picturePath}
+  	    set name = #{name}, address = ?, vip = #{vip}, picture_path = #{picturePath}
 		where id = #{id}
   </update>  
   
   <delete id="delete">
   	delete from customers where id = #{id}
   </delete> 
+  
+  <delete id="batchDelete">
+<!--     ${}原封不动的插入，用于拼接SQL语句，注意考虑SQL注入风险 -->
+  	delete from customers where id in ${idInList}
+  </delete>   
   
   <insert id="create">
   	insert into customers(name, address, vip, picture_path) 
