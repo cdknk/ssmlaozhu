@@ -7,4 +7,27 @@
   <select id="findAll" resultType="ssm.entity.Customer">
     SELECT * FROM CUSTOMERS
   </select>
+  
+  <select id="count" resultType="long">
+    select count(*) from customers
+  </select>  
+  
+  <select id="findOne" resultType="ssm.entity.Customer">
+    SELECT * FROM CUSTOMERS where id = #{id}
+  </select>
+  
+  <update id="update">
+  	update customers 
+  	    set name = #{name}, address = #{address}, vip = #{vip}, picture_path = #{picturePath}
+		where id = #{id}
+  </update>  
+  
+  <delete id="delete">
+  	delete from customers where id = #{id}
+  </delete> 
+  
+  <insert id="create">
+  	insert into customers(name, address, vip, picture_path) 
+  	  values(#{name}, #{address}, #{vip}, #{picturePath})
+  </insert>
 </mapper>

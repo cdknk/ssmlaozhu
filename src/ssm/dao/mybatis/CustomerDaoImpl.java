@@ -28,38 +28,32 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void create(Customer customer) {
-		// TODO Auto-generated method stub
-		
+		customerMapper.create(customer);
 	}
 
 	@Override
 	public Customer findOne(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return customerMapper.findOne(id);
 	}
 
 	@Override
 	public void update(Customer customer) {
-		// TODO Auto-generated method stub
-		
+		customerMapper.update(customer);
 	}
 
 	@Override
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
-		
+		customerMapper.delete(id);
 	}
 
 	@Override
 	public void batchDelete(List<Long> idList) {
-		// TODO Auto-generated method stub
-		
+//		TODO
 	}
 
 	@Override
 	public Long count() {
-		// TODO Auto-generated method stub
-		return 1L;
+		return customerMapper.count();
 	}
 
 }

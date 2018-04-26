@@ -72,6 +72,7 @@ public class CustomerController {
 		if (bindingResult.hasErrors()) {
 			return "customers-edit";
 		} else {
+			// TODO 处理照片上传
 			customerService.create(customer);
 			// RedirectAttributes同时还可以作为Model用(addAttribute)，添加flash属性必须用addFlashAttribute
 			redirectAttributes.addFlashAttribute("customerCreated", customer.getName());
