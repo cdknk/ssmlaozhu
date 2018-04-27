@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="ssm.dao.mybatis.mappers.BlogMapper">
+  <select id="findOne" resultMap="blogDetailsMap">
+		select b.id blog_id, b.title blog_title, a.id author_id, a.name author_name 
+		  from blogs b inner join authors a on b.author_id = a.id
+		  where b.id = #{id}
+  </select>
+  
+  <resultMap type="ssm.entity.Blog" id="blogDetailsMap">
+<!--   	Blog blog = new Blog(); -->
+<!--   	blog.setId(getColumn('blog_id')); -->
+<!--   	blog.setTitle(getColumn('blog_title')); -->
+<!--   	blog.setAuthor(); -->
+  	
+<!--   	Author author = new Author(); -->
+<!--   	author.setId(getColumn('author_id')); -->
+<!--   	author.setName(getColumn('author_name')); -->
+  	
+<!--   	主键属性用<id>, 非主键属性用<result>, 对一关系用<association> -->  	
+  	<id property="id" column="blog_id" />
+  	<result property="title" column="blog_title"/>
+  	<association property="author" javaType="ssm.entity.Author">
+  		<id property="id" column="author_id"></id>
+  		<result property="name" column="author_name"/>
+  	</association>
+  </resultMap>
+</mapper>
