@@ -30,7 +30,10 @@
   
   <delete id="batchDelete">
 <!--     ${}原封不动的插入，用于拼接SQL语句，注意考虑SQL注入风险 -->
-  	delete from customers where id in ${idInList}
+  	delete from customers where id in 
+  		<foreach collection="idList" item="id" open="(" separator="," close=")">
+  			#{id}
+  		</foreach>
   </delete>   
   
   <insert id="create">

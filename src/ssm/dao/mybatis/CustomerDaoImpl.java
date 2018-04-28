@@ -49,15 +49,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	@Override
 	public void batchDelete(List<Long> idList) {
-		// idList [1, 3, 5]
-		// =>     (1, 3, 5)
-		StringJoiner sj = new StringJoiner(",", "(", ")");
-		for (Long id : idList) {
-			sj.add(id.toString());
-		}
-		String idInList = sj.toString();
-		System.out.println("batchDelete: " + idInList);
-		customerMapper.batchDelete(idInList);
+		customerMapper.batchDelete(idList);
 	}
 
 	@Override

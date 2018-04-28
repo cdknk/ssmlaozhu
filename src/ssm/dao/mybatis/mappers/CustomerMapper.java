@@ -20,7 +20,7 @@ public interface CustomerMapper {
 	void delete(Long id);
 
 	// 如(1, 3, 5)
-	void batchDelete(@Param("idInList") String idInList);
+	void batchDelete(@Param("idList") List<Long> idList);
 
 	void create(Customer customer); 
 }
