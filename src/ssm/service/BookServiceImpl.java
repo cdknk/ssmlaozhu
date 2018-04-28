@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ssm.controller.BookSearch;
 import ssm.dao.BookDao;
 import ssm.entity.Book;
 
@@ -38,6 +39,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void delete(Integer id) {
 		bookDao.delete(id);
+	}
+
+	@Override
+	public List<Book> search(BookSearch bookSearch) {
+		return bookDao.search(bookSearch);
 	}
 
 }

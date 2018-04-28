@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -60,5 +62,13 @@ public class BookController {
 	@ResponseStatus(HttpStatus.NO_CONTENT) // 按照REST风格，响应没有内容时的状态码
 	public void delete(@PathVariable Integer id) {
 		bookService.delete(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/books/search")
+	public String search(@ModelAttribute BookSearch bookSearch, Model model) {
+		System.out.println("bookSearch: " + bookSearch);
+		List<Book> books = bookService.search(bookSearch);
+		model.addAttribute("books", books);
+		return "books-search";
 	}
 }

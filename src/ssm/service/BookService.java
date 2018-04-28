@@ -2,6 +2,7 @@ package ssm.service;
 
 import java.util.List;
 
+import ssm.controller.BookSearch;
 import ssm.entity.Book;
 
 public interface BookService {
@@ -13,5 +14,7 @@ public interface BookService {
 	void update(Book book);
 
 	void delete(Integer id);
+
+	List<Book> search(BookSearch bookSearch);
 
 }

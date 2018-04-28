@@ -14,6 +14,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import ssm.controller.BookSearch;
 import ssm.dao.BookDao;
 import ssm.entity.Book;
 
@@ -62,6 +63,12 @@ public class BookDaoImpl implements BookDao {
 	public void delete(Integer id) {
 		String sql = "delete from books where id = ?";
 		jdbcTemplate.update(sql, id);
+	}
+
+	@Override
+	public List<Book> search(BookSearch bookSearch) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
 

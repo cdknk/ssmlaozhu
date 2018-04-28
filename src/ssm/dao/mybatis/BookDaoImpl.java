@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
+import ssm.controller.BookSearch;
 import ssm.dao.BookDao;
 import ssm.dao.mybatis.mappers.BookMapper;
 import ssm.entity.Book;
@@ -43,6 +44,11 @@ public class BookDaoImpl implements BookDao {
 	public void delete(Integer id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Book> search(BookSearch bookSearch) {
+		return bookMapper.search(bookSearch);
 	}
 
 }

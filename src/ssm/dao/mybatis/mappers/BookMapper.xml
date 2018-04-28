@@ -16,4 +16,13 @@
   	insert into books (title, author, publisher) 
   	  values(#{title}, #{author}, #{publisher})
   </insert>
+  
+  <select id="search" resultType="Book">
+  	SELECT * FROM BOOKS 
+  	<where>
+  		<if test="bookTitle != null">title like #{bookTitle}</if>
+  		<if test="bookAuthor != null">and author like #{bookAuthor}</if>
+  		<if test="publisher != null">and publisher like #{publisher}</if>
+  	</where>
+  </select>
 </mapper>
