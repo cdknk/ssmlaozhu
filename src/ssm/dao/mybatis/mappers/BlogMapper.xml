@@ -11,7 +11,7 @@
 		  where b.id = #{id}
   </select>
   
-  <resultMap type="ssm.entity.Blog" id="blogDetailsMap">
+  <resultMap type="Blog" id="blogDetailsMap">
 <!--   	Blog blog = new Blog(); -->
 <!--   	blog.setId(getColumn('blog_id')); -->
 <!--   	blog.setTitle(getColumn('blog_title')); -->
@@ -31,11 +31,11 @@
 <!--   	主键属性用<id>, 非主键属性用<result>, 对一关系用<association>, 对多关系用<collection> -->  	
   	<id property="id" column="blog_id" />
   	<result property="title" column="blog_title"/>
-  	<association property="author" javaType="ssm.entity.Author">
+  	<association property="author" javaType="Author">
   		<id property="id" column="author_id"></id>
   		<result property="name" column="author_name"/>
   	</association>
-  	<collection property="posts" ofType="ssm.entity.Post">
+  	<collection property="posts" ofType="Post">
   		<id property="id" column="post_id"></id>
   		<result property="title" column="post_subject"/>
   		<result property="content" column="post_content"/>
