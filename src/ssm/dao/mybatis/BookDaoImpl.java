@@ -28,8 +28,9 @@ public class BookDaoImpl implements BookDao {
 
 	@Override
 	public void create(Book book) {
-		// TODO Auto-generated method stub
-		
+		bookMapper.create(book);
+		// id应该要set到book中
+		System.out.println("after bookDaoMybatisImpl.ceate: " + book);
 	}
 
 	@Override

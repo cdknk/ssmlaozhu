@@ -8,4 +8,6 @@ public interface BookMapper {
 
 	List<Book> findAll();
 
+	void create(Book book);
+
 }

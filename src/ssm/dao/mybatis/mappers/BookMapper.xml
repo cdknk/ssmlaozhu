@@ -7,4 +7,13 @@
   <select id="findAll" resultType="ssm.entity.Book">
 		select id, title, author, publisher from books
   </select>
+  
+<!--   keyColumn   主键列名 -->
+<!--   keyProperty bean id属性名 -->
+  <insert id="create" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+<!--   	insert into books(...) values(...) returning id -->
+<!--     book.setId(...) -->
+  	insert into books (title, author, publisher) 
+  	  values(#{title}, #{author}, #{publisher})
+  </insert>
 </mapper>
