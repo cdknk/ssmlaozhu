@@ -27,8 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers("/admin/**").hasRole("ADMIN")
 			.antMatchers("/assets/**").permitAll()
+			.antMatchers("/login").anonymous()
 			.antMatchers("/**").authenticated()
 			.and()
-			.formLogin(); // 使用表单登录
+			.formLogin() // 使用表单登录
+			.loginPage("/login"); // 指定登录页面所在的地址
 	}
 }
