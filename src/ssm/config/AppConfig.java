@@ -1,4 +1,4 @@
-package ssm;
+package ssm.config;
 
 import javax.sql.DataSource;
 
