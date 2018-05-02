@@ -20,9 +20,19 @@
   <select id="search" resultType="Book">
   	SELECT * FROM BOOKS 
   	<where>
-  		<if test="bookTitle != null">title like #{bookTitle}</if>
-  		<if test="bookAuthor != null">and author like #{bookAuthor}</if>
-  		<if test="publisher != null">and publisher like #{publisher}</if>
+  		<if test="bookTitle != null">
+<!--   			value是一个OGNL表达式 -->
+  			<bind name="titlePattern" value="'%' + bookTitle + '%'"/>
+  			title like #{titlePattern}
+  		</if>
+  		<if test="bookAuthor != null">
+  			<bind name="authorPattern" value="'%' + bookAuthor + '%'"/>
+  			and author like #{authorPattern}
+  		</if>
+  		<if test="publisher != null">
+  			<bind name="publisherPattern" value="'%' + publisher + '%'"/>
+  			and publisher like #{publisherPattern}
+  		</if>
   	</where>
   </select>
 </mapper>

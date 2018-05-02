@@ -9,7 +9,7 @@
 <title>图书检索</title>
 </head>
 <body>
-	<h3>图书检索(%匹配任意字符串，_匹配单个字符)</h3>
+	<h3>图书检索</h3>
 	<form method="get" action="">
 		书名: <input type="text" name="bookTitle" value="${bookSearch.bookTitle}"> <br>
 		作者: <input type="text" name="bookAuthor" value="${bookSearch.bookAuthor}"> <br>
