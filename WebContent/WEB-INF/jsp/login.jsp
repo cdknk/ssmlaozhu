@@ -10,6 +10,11 @@
 <title>登录</title>
 </head>
 <body>
+
+	<c:if test="${param.error != null}">
+		<h4 style="color: red;">登录失败：用户名或密码错误</h4>
+	</c:if>
+
 <!-- 	            表单必须post提交到/login -->
 <!--     	只需要用户名的input.name为username，密码的input.name为password -->
  <form action="" method="post">
