@@ -19,4 +19,9 @@ Spring Security配置步骤
 	}
   }
   
+-------------------------------------
+
+基于表达式的权限检查
+https://docs.spring.io/spring-security/site/docs/4.2.5.RELEASE/reference/htmlsingle/#el-common-built-in  
+
   
