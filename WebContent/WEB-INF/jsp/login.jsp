@@ -35,6 +35,11 @@
         <input type="password" id="password" name="password"/>
         </p>
         
+		<p>
+        <label for="remember-me">记住我?</label>
+        <input type="checkbox" id="remember-me" name="remember-me"/>
+        </p>        
+        
         <div>
             <button type="submit" class="btn">登录</button>
         </div>
