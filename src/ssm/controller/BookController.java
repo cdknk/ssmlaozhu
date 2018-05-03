@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import ssm.entity.Book;
+import ssm.entity.User;
 import ssm.service.BookService;
 
 @Controller
@@ -29,7 +31,9 @@ public class BookController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/books-crud")
-	public String crudGrid() {
+	public String crudGrid(@AuthenticationPrincipal(expression = "user") User curUser) {
+		// @AuthenticationPrincipal默认拿到的是principal(UserDetailsImpl)，所以需要.user获得实体User对象（来自dao层）
+		System.out.println("当前登录用户: " + curUser);
 		return "books-crud";
 	}
 	

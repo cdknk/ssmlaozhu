@@ -8,7 +8,8 @@
 
 <div class="header">
 
-	<span><sec:authentication property="name"/></span>
+<!-- 	principal本质上是我们提供的实现了UserDetails接口的对象 -->
+	<span><sec:authentication property="principal.user.nickname"/></span>
 	
 	<form action="${contextPath}/logout" method="post" style="display: inline;">
 		<input type="hidden" name="${_csrf.parameterName}"
