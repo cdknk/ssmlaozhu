@@ -14,6 +14,10 @@
 	<c:if test="${param.error != null}">
 		<h4 style="color: red;">登录失败：用户名或密码错误</h4>
 	</c:if>
+	
+	<c:if test="${param.logout != null}">
+		<h4 style="color: blue;">已退出系统</h4>
+	</c:if>	
 
 <!-- 	            表单必须post提交到/login -->
 <!--     	只需要用户名的input.name为username，密码的input.name为password -->

@@ -16,6 +16,8 @@
 </head>
 <body>
 	<div class="container">
+		<%@ include file="header.jspf" %>
+		
 		<h3>使用【jsgrid + ajax】实现图书增删改查</h3>
 		<div id="jsGrid"></div>
 	</div>
