@@ -1,5 +1,7 @@
 package ssm.entity;
 
+import java.util.List;
+
 public class User {
 	private Long id;
 	private String username;
@@ -7,6 +9,8 @@ public class User {
 	private String nickname;
 	private String avatarUrl;
 	private String role;
+	
+	private List<String> permissions;
 	
 	public Long getId() {
 		return id;
@@ -43,6 +47,13 @@ public class User {
 	}
 	public void setRole(String role) {
 		this.role = role;
+	}
+	
+	public List<String> getPermissions() {
+		return permissions;
+	}
+	public void setPermissions(List<String> permissions) {
+		this.permissions = permissions;
 	}
 	
 	@Override
